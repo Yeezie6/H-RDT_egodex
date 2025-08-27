@@ -98,21 +98,21 @@ class EgoDexDataset:
         files = []
         for task_dir in directory.iterdir():
             if task_dir.is_dir():
-                # Collect all triplets: hdf5, mp4, pt
+                # Collect所有episode
                 hdf5_files = list(task_dir.glob('*.hdf5'))
-                for hdf5_file in hdf5_files:
+                hdf5_files.sort(key=lambda x: int(x.stem))  # 按文件名排序，假设文件名为数字
+                # 只取前300个episode
+                selected_hdf5_files = hdf5_files[:300]
+                for hdf5_file in selected_hdf5_files:
                     file_index = hdf5_file.stem  # Get filename without extension
                     mp4_file = task_dir / f"{file_index}.mp4"
                     pt_file = task_dir / f"{file_index}.pt"
-                    
                     # Ensure all required files exist
-                    if (hdf5_file.exists() and mp4_file.exists() and 
-                        pt_file.exists()):
+                    if (hdf5_file.exists() and mp4_file.exists() and pt_file.exists()):
                         files.append({
                             'hdf5': hdf5_file,
                             'mp4': mp4_file,
                             'pt': pt_file,
-
                             'task': task_dir.name,
                             'file_index': file_index
                         })
