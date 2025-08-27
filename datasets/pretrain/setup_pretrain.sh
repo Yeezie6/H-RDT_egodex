@@ -4,8 +4,8 @@
 # Set your paths here
 
 # Required paths - modify these according to your environment
-export EGODEX_DATA_ROOT="/share/hongzhe/datasets/egodex"
-export T5_MODEL_PATH="/data/lingxuan/weights/t5-v1_1-xxl"
+export EGODEX_DATA_ROOT="/mnt/pfs/scalelab2/egodex"
+export T5_MODEL_PATH="/mnt/pfs/scalelab2/weights/RDT/t5-v1_1-xxl"
 
 # Project structure (auto-detected)
 export HRDT_PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"

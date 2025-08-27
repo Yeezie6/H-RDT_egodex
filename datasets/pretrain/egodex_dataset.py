@@ -292,7 +292,7 @@ class EgoDexDataset:
 if __name__ == "__main__":
     # Test dataset
     dataset = EgoDexDataset(
-        data_root="/share/hongzhe/datasets/egodex",
+        data_root="/mnt/pfs/scalelab2/egodex",
         val=False,
         upsample_rate=3
     )

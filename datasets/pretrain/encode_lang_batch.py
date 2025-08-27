@@ -11,6 +11,7 @@ from tqdm import tqdm
 
 import sys
 import os
+import traceback
 
 # Add project root to Python path
 PROJECT_ROOT = os.environ.get('HRDT_PROJECT_ROOT', os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
@@ -24,7 +25,7 @@ TARGET_DIR = os.environ.get('EGODEX_DATA_ROOT', "/share/hongzhe/datasets/egodex/
 
 # Multi-process configuration (can be overridden by environment variables)
 NUM_GPUS = int(os.environ.get('NUM_GPUS', 8))  # Total number of GPUs
-PROCESSES_PER_GPU = int(os.environ.get('PROCESSES_PER_GPU', 4))  # Processes per GPU
+PROCESSES_PER_GPU = int(os.environ.get('PROCESSES_PER_GPU', 1))  # Processes per GPU
 TOTAL_PROCESSES = NUM_GPUS * PROCESSES_PER_GPU  # Total processes
 
 
@@ -189,6 +190,7 @@ def worker_process(process_id, gpu_id, file_list, progress_queue):
         
     except Exception as e:
         print(f"Process {process_id} encountered serious error: {str(e)}")
+        traceback.print_exc()  # 增加详细异常输出
         progress_queue.put(('error', process_id, str(e)))
 
 

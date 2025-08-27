@@ -44,7 +44,7 @@ class VLAConsumerDataset(Dataset):
         dataset_name="test_robotwin",  # Add dataset_name parameter
     ):
         super(VLAConsumerDataset, self).__init__()
-        self.dataset_name = dataset_name
+        self.dataset_name = "egodex"
         DATASET_NAMES = {self.dataset_name}
         
         # Create the mapping between dataset name and id
@@ -63,8 +63,8 @@ class VLAConsumerDataset(Dataset):
                 upsample_rate=upsample_rate,
                 val=val,
                 use_precomp_lang_embed=use_precomp_lang_embed,
-                # Note: override default paths if needed
-                # data_root="/path/to/egodex",
+                data_root=config.get("data_root", "/mnt/pfs/scalelab2/egodex"),
+                stat_path="/mnt/pfs/scalelab2/swj/H_RDT/datasets/pretrain/egodex_stat.json",
                 # stat_path="/path/to/custom/egodex_stat.json",
             )
         elif self.dataset_name == "robotwin_agilex":

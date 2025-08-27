@@ -24,7 +24,7 @@ dataset:
   # read by the consumer with new data
 
   # The path to the buffer (at least 400GB)
-  buf_path: /ssd/lingxuan/data/buffer
+  buf_path: /mnt/pfs/scalelab2
   # The number of chunks in the buffer
   buf_num_chunks: 512
   # The number of samples (step rather than episode) in each chunk
@@ -40,6 +40,8 @@ dataset:
   image_aspect_ratio: pad
   # Maximum number of language tokens
   tokenizer_max_length: 1024
+
+  egodex_data_root: /mnt/pfs/scalelab2/egodex
 
 model:
   # Config for condition adpators
@@ -87,3 +89,4 @@ model:
     feature_dim: 4096
     # feature_dim: 768   # DistilBERT output dimension
     # model_name: distilbert-base-uncased
+

@@ -1,6 +1,7 @@
 export NCCL_IB_HCA=mlx5_0:1,mlx5_1:1,mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
 export NCCL_IB_DISABLE=0
-export NCCL_SOCKET_IFNAME=bond0
+# export NCCL_SOCKET_IFNAME=bond0
+export NCCL_SOCKET_IFNAME=eth0
 export NCCL_DEBUG=INFO
 export NCCL_NVLS_ENABLE=0
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
@@ -25,10 +26,10 @@ fi
 # accelerate launch main.py \
 #     --deepspeed="./configs/zero2.json" \
 #     ...
-
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 accelerate launch --main_process_port 29500 main.py \
     --pretrained_vision_encoder_name_or_path=$VISION_ENCODER_NAME \
-    --deepspeed="./configs/zero1.json" \
+    --deepspeed="./configs/zero2.json" \
     --config_path="configs/hrdt_pretrain.yaml" \
     --output_dir=$OUTPUT_DIR \
     --train_batch_size=32 \

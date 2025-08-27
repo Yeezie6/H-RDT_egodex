@@ -32,7 +32,8 @@ def collect_egodex_action_stats(root_dir, output_path, large_values_log="large_v
     hdf5_files = []
     
     # Traverse all part directories
-    for part in ['part1', 'part2', 'part3', 'part4', 'part5', 'extra', 'test']:
+    # for part in ['part1', 'part2', 'part3', 'part4', 'part5', 'extra', 'test']:
+    for part in ['part2', 'part3', 'part4', 'part5', 'extra', 'test']:
         part_dir = root_path / part
         if part_dir.exists():
             for task_dir in part_dir.iterdir():

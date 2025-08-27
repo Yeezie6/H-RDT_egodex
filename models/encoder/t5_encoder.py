@@ -1,9 +1,10 @@
+import os
 import torch
 from transformers import AutoTokenizer, T5EncoderModel
 
 
 class T5Embedder:
-    available_models = ["/data/lingxuan/weights/t5-v1_1-xxl"]
+    available_models = [os.environ.get("T5_MODEL_PATH", "/data/lingxuan/weights/t5-v1_1-xxl")]
 
     def __init__(
         self,
